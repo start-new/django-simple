@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+django-extensions = "*"
+django-environ = "*"
+pillow = "*"
+{%- if cookiecutter.use_bootstrap == "y" %}
+crispy-bootstrap5 = "*"{% endif %}
+{%- if cookiecutter.use_webpack == "y" %}
+python-webpack-boilerplate = "*"{% endif %}
+{%- if cookiecutter.postgresql_version != "other database" %}
+psycopg2-binary = "*"{% endif %}
+
+[dev-packages]
+
+[requires]
+python_version = "{{ cookiecutter.python_version }}"

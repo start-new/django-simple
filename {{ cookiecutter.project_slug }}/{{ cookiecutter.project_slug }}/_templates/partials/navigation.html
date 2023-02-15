@@ -1,0 +1,53 @@
+{% if cookiecutter.use_bootstrap == "y" %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">{{ cookiecutter.project_name }}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                {% raw %}{% url 'pages:home' as url %}{% endraw %}
+                <li class="nav-item">
+                <a class="nav-link {% raw %}{% if request.path == url %}active{% endif %}{% endraw %}" {% raw %}{% if request.path == url %}aria-current="page"{% endif %}{% endraw %} href="{% raw %}{% url 'pages:home' %}{% endraw %}">Home{% raw %}{% if request.path == url %}{% endraw %} <span class="visually-hidden">(current)</span>{% raw %}{% endif %}{% endraw %}</a>
+                </li>
+                {% raw %}{% if not user.is_authenticated %}{% endraw %}
+                {% raw %}{% url 'users:login' as url %}{% endraw %}
+                <li class="nav-item">
+                    <a class="nav-link {% raw %}{% if request.path == url %}active{% endif %}{% endraw %}" {% raw %}{% if request.path == url %}aria-current="page"{% endif %}{% endraw %} href="{% raw %}{% url 'users:login' %}{% endraw %}">Login {% raw %}{% if request.path == url %}{% endraw %} <span class="visually-hidden">(current)</span>{% raw %}{% endif %}{% endraw %}</a>
+                </li>
+                {% raw %}{% else %}{% endraw %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% raw %}{% url 'users:logout' %}{% endraw %}">Logout</a>
+                </li>
+                {% raw %}{% endif %}{% endraw %}
+            </ul>
+        </div>
+    </div>
+</nav>
+{% else %}
+<nav>
+    <div>
+        <a href="#">{{ cookiecutter.project_name }}</a>
+    </div>
+    <div>
+        <ul>
+            {% raw %}{% url 'pages:home' as url %}{% endraw %}
+            <li>
+                <a class="{% raw %}{% if request.path == url %}active{% endif %}{% endraw %}" {% raw %}{% if request.path == url %}aria-current="page"{% endif %}{% endraw %} href="{% raw %}{% url 'pages:home' %}{% endraw %}">Home</a>
+            </li>
+            {% raw %}{% if not user.is_authenticated %}{% endraw %}
+            {% raw %}{% url 'users:login' as url %}{% endraw %}
+            <li>
+                <a class="{% raw %}{% if request.path == url %}active{% endif %}{% endraw %}" {% raw %}{% if request.path == url %}aria-current="page"{% endif %}{% endraw %} href="{% raw %}{% url 'users:login' %}{% endraw %}">Login</a>
+            </li>
+            {% raw %}{% else %}{% endraw %}
+            <li>
+                <a href="{% raw %}{% url 'users:logout' %}{% endraw %}">Logout</a>
+            </li>
+            {% raw %}{% endif %}{% endraw %}
+        </ul>
+    </div>
+</nav>
+{% endif %}

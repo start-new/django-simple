@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+    postgres:
+        container_name: {{ cookiecutter.project_slug }}_postgres_container
+        image: postgres:{{ cookiecutter.postgresql_version }}
+        working_dir: /app
+        restart: always
+        ports:
+            - "{{ cookiecutter.postgresql_port }}:5432"
+        environment:
+            POSTGRES_USER: {{ cookiecutter.postgresql_user }}
+            POSTGRES_PASSWORD: {{ cookiecutter.postgresql_password }}
+            POSTGRES_DB: {{ cookiecutter.postgresql_database }}
+        volumes:
+            - "postgres_{{ cookiecutter.project_slug }}_{{ cookiecutter.postgresql_port }}:/var/lib/postgresql"
+
+volumes:
+    postgres_{{ cookiecutter.project_slug }}_{{ cookiecutter.postgresql_port }}:

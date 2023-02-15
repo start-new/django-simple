@@ -1,0 +1,35 @@
+{
+  "project_name": "Mon super projet",
+  "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
+  "description": "Une description de mon projet pour le README",
+  "author_name": "Thierry Chappuis",
+  "domain_name": "example.com",
+  "email": "{{ cookiecutter.author_name.lower()|replace(' ', '-') }}@example.com",
+  "timezone": "UTC",
+  "language": [
+    "en",
+    "fr",
+    "de",
+    "it"
+  ],
+  "python_version": [
+    "3.11",
+    "3.10",
+    "3.9"
+  ],
+  "postgresql_version": [
+    "latest",
+    "15",
+    "14",
+    "13",
+    "12",
+    "other database"
+  ],
+  "postgresql_host": "localhost",
+  "postgresql_port": "5432",
+  "postgresql_database": "postgres",
+  "postgresql_user": "postgres",
+  "postgresql_password": "postgres",
+  "use_bootstrap": "y",
+  "use_webpack": "n"
+}
