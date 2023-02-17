@@ -4,6 +4,8 @@ Django settings for {{ cookiecutter.project_name }} project.
 
 from pathlib import Path
 
+from django.contrib.messages import constants as messages
+
 import environ 
 
 # Reading environment variables
@@ -153,3 +155,13 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"{% endif %}
 AUTH_USER_MODEL = "users.User"
 LOGIN_REDIRECT_URL = "pages:home"
 LOGOUT_REDIRECT_URL = "pages:home"
+
+{%- if cookiecutter.use_bootstrap == "y" %}# Configuration of message tags
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-secondary',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+ }{% endif %}
+ 
