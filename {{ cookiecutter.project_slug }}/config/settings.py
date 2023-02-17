@@ -4,7 +4,9 @@ Django settings for {{ cookiecutter.project_name }} project.
 
 from pathlib import Path
 
-from django.contrib.messages import constants as messages
+{%- if cookiecutter.use_bootstrap == "y" %}
+
+from django.contrib.messages import constants as messages{% endif %}
 
 import environ 
 
@@ -156,7 +158,9 @@ AUTH_USER_MODEL = "users.User"
 LOGIN_REDIRECT_URL = "pages:home"
 LOGOUT_REDIRECT_URL = "pages:home"
 
-{%- if cookiecutter.use_bootstrap == "y" %}# Configuration of message tags
+{%- if cookiecutter.use_bootstrap == "y" %}
+
+# Configuration of message tags
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-secondary',
     messages.INFO: 'alert-info',
