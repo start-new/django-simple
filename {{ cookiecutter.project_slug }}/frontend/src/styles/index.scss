@@ -1,3 +1,7 @@
+{%- if cookiecutter.use_bootstrap == "y" -%}
 @import "variables.scss";
-{%- if cookiecutter.use_bootstrap == "y" %}
 @import "~bootstrap/scss/bootstrap.scss";{% endif %}
+{%- if cookiecutter.use_tailwindcss == "y" -%}
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";{% endif %}

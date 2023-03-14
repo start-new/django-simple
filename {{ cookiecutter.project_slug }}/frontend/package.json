@@ -36,6 +36,8 @@
     "eslint-webpack-plugin": "^3.1.1",
     "mini-css-extract-plugin": "^2.5.1",
     "postcss-loader": "^6.2.1",
+    {%- if cookiecutter.use_tailwindcss == "y" %}
+    "postcss-import": "^15.1.0",{% endif %}
     "postcss-preset-env": "^7.2.3",
     "sass": "~1.49.9",
     "sass-loader": "^13.2.0",
@@ -52,6 +54,8 @@
   "dependencies": {
     {%- if cookiecutter.use_bootstrap == "y" %}
     "bootstrap": "^5.2.3",{% endif %}
+    {%- if cookiecutter.use_tailwindcss == "y" %}
+    "tailwindcss": "^3.2.7",{% endif %}
     "core-js": "^3.20.3"
   }
 }

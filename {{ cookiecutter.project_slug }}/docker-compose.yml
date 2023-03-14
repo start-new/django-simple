@@ -1,18 +1,18 @@
 version: "3.9"
 services:
     postgres:
-        container_name: {{ cookiecutter.project_slug }}_postgres_container
+        container_name: {{ cookiecutter.project_slug }}_postgres_container_{% if cookiecutter.postgresql_port == "auto" %}!!!SET POSTGRESQL_AUTO_PORT!!!{% else %}{{ cookiecutter.postgresql_port }}{% endif %}
         image: postgres:{{ cookiecutter.postgresql_version }}
         working_dir: /app
         restart: always
         ports:
-            - "{{ cookiecutter.postgresql_port }}:5432"
+            - "{% if cookiecutter.postgresql_port == "auto" %}!!!SET POSTGRESQL_AUTO_PORT!!!{% else %}{{ cookiecutter.postgresql_port }}{% endif %}:5432"
         environment:
             POSTGRES_USER: {{ cookiecutter.postgresql_user }}
             POSTGRES_PASSWORD: {{ cookiecutter.postgresql_password }}
             POSTGRES_DB: {{ cookiecutter.postgresql_database }}
         volumes:
-            - "postgres_{{ cookiecutter.project_slug }}_{{ cookiecutter.postgresql_port }}:/var/lib/postgresql"
+            - "postgres_{{ cookiecutter.project_slug }}_{% if cookiecutter.postgresql_port == "auto" %}!!!SET POSTGRESQL_AUTO_PORT!!!{% else %}{{ cookiecutter.postgresql_port }}{% endif %}:/var/lib/postgresql"
 
 volumes:
-    postgres_{{ cookiecutter.project_slug }}_{{ cookiecutter.postgresql_port }}:
+    postgres_{{ cookiecutter.project_slug }}_{% if cookiecutter.postgresql_port == "auto" %}!!!SET POSTGRESQL_AUTO_PORT!!!{% else %}{{ cookiecutter.postgresql_port }}{% endif %}:

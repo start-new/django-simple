@@ -49,8 +49,10 @@ INSTALLED_APPS = [
     "django_extensions",
     {%- if cookiecutter.use_bootstrap == "y" %}
     "crispy_forms",
-    "crispy_bootstrap5",{% endif %}
-    {%- if cookiecutter.use_webpack == "y" %}
+    "crispy_bootstrap5",{% elif cookiecutter.use_bootstrap == "y" %}
+    "crispy_forms",
+    "crispy_tailwind",{% endif %}
+    {%- if cookiecutter.use_bootstrap == "y" or cookiecutter.use_tailwindcss == "y" %}
     'webpack_boilerplate',{% endif %}
 ]
 
@@ -135,7 +137,7 @@ STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [APPS_DIR / "_static"]
 
-{%- if cookiecutter.use_webpack == "y" %}
+{%- if cookiecutter.use_bootstrap == "y" or cookiecutter.use_tailwindcss == "y" %}
 
 # Configuration of python-webpack-boilerplate
 WEBPACK_LOADER = {
@@ -147,11 +149,11 @@ WEBPACK_LOADER = {
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-{%- if cookiecutter.use_bootstrap == "y" %}
+{%- if cookiecutter.use_bootstrap == "y" or cookiecutter.use_tailwindcss == "y" %}
 
 # Configuration de Django Crispy Forms
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-CRISPY_TEMPLATE_PACK = "bootstrap5"{% endif %}
+CRISPY_ALLOWED_TEMPLATE_PACKS = {% if cookiecutter.use_bootstrap == "y" %}"bootstrap5"{% elif cookiecutter.use_tailwindcss == "y" %}"tailwind"{% endif %}
+CRISPY_TEMPLATE_PACK = {% if cookiecutter.use_bootstrap == "y" %}"bootstrap5"{% elif cookiecutter.use_tailwindcss == "y" %}"tailwind"{% endif %}{% endif %}
 
 # Configuration de of the authentication
 AUTH_USER_MODEL = "users.User"
