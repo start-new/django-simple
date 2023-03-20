@@ -16,7 +16,7 @@ const getEntryObject = () => {
 module.exports = {
   entry: getEntryObject(),
   output: {
-    path: Path.join(__dirname, "../../{{ cookiecutter.project_slug }}/_static/"),
+    path: Path.join(__dirname, "../../{{ cookiecutter.project_slug }}/static/"),
     filename: "js/[name].js",
     publicPath: "/static/",
     assetModuleFilename: "[path][name][ext]",
