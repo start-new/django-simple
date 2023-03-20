@@ -72,7 +72,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-            APPS_DIR / "_templates",
+            APPS_DIR / "templates",
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -135,13 +135,13 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
-STATICFILES_DIRS = [APPS_DIR / "_static"]
+STATICFILES_DIRS = [APPS_DIR / "static"]
 
 {%- if cookiecutter.use_bootstrap == "y" or cookiecutter.use_tailwindcss == "y" %}
 
 # Configuration of python-webpack-boilerplate
 WEBPACK_LOADER = {
-    'MANIFEST_FILE': APPS_DIR / "_static" / "manifest.json",
+    'MANIFEST_FILE': APPS_DIR / "static" / "manifest.json",
 }{% endif %}
 
 # Default primary key field type
