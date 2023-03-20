@@ -14,10 +14,17 @@ crispy-bootstrap5 = "*"{% endif %}
 crispy-tailwind = "*"{% endif %}
 {%- if cookiecutter.use_bootstrap == "y" or cookiecutter.use_tailwindcss == "y" %}
 python-webpack-boilerplate = "*"{% endif %}
+
+[dev-packages]
+pytest = "*"
+pytest-django = "*"
 {%- if cookiecutter.postgresql_version != "other database" %}
 psycopg2-binary = "*"{% endif %}
 
-[dev-packages]
+[production]
+gunicorn = "*"
+{%- if cookiecutter.postgresql_version != "other database" %}
+psycopg2 = "*"{% endif %}
 
 [requires]
 python_version = "{{ cookiecutter.python_version }}"
