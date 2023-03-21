@@ -20,6 +20,8 @@ pytest = "*"
 pytest-django = "*"
 {%- if cookiecutter.postgresql_version != "other database" %}
 psycopg2-binary = "*"{% endif %}
+{%- if cookiecutter.use_jupyter_notebook == "y" %}
+notebook = "*"{% endif %}
 
 [production]
 gunicorn = "*"
