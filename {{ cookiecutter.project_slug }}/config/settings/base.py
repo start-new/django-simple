@@ -14,6 +14,7 @@ from config import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
+PROJECT_DIR = BASE_DIR / "config"
 APPS_DIR = BASE_DIR / "{{ cookiecutter.project_slug }}"
 
 
@@ -37,6 +38,21 @@ ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
 INSTALLED_APPS = [
     "{{ cookiecutter.project_slug }}.pages",
     "{{ cookiecutter.project_slug }}.users",
+    {%- if cookiecutter.use_wagtail == "y" %}
+    "wagtail.contrib.forms",
+    "wagtail.contrib.redirects",
+    "wagtail.embeds",
+    "wagtail.sites",
+    "wagtail.users",
+    "wagtail.snippets",
+    "wagtail.documents",
+    "wagtail.images",
+    "wagtail.search",
+    "wagtail.admin",
+    "wagtail.contrib.styleguide",
+    "wagtail",
+    "modelcluster",
+    "taggit",{% endif %}
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -54,13 +70,15 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django.middleware.security.SecurityMiddleware",
+    {%- if cookiecutter.use_wagtail == "y" %}
+    "wagtail.contrib.redirects.middleware.RedirectMiddleware",{% endif %}
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -130,6 +148,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+]
+
+# ManifestStaticFilesStorage is recommended in production, to prevent outdated
+# JavaScript / CSS assets being served from cache.
+# See https://docs.djangoproject.com/en/4.1/ref/contrib/staticfiles/#manifeststaticfilesstorage
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [APPS_DIR / "static"]
@@ -140,6 +168,19 @@ STATICFILES_DIRS = [APPS_DIR / "static"]
 WEBPACK_LOADER = {
     'MANIFEST_FILE': APPS_DIR / "static" / "manifest.json",
 }{% endif %}
+
+MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = "media/"
+
+
+ADMINS = [
+    ('{{ cookiecutter.author_name }}', '{{ cookiecutter.email }}'),
+]
+MANAGERS = ADMINS
+
+# Email configuration
+EMAIL_SUBJECT_PREFIX = '[{{ cookiecutter.project_name }}] '
+DEFAULT_FROM_EMAIL = '{{ cookiecutter.email }}'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -168,3 +209,19 @@ MESSAGE_TAGS = {
     messages.ERROR: 'alert-danger',
  }{% endif %}
  
+{%- if cookiecutter.use_wagtail == "y" %}
+
+# Wagtail settings
+WAGTAIL_SITE_NAME = "{{ cookiecutter.project_slug }}"
+
+# Search
+# https://docs.wagtail.org/en/stable/topics/search/backends.html
+WAGTAILSEARCH_BACKENDS = {
+    "default": {
+        "BACKEND": "wagtail.search.backends.database",
+    }
+}
+
+# Base URL to use when referring to full URLs within the Wagtail admin backend -
+# e.g. in notification emails. Don't include '/admin' or a trailing slash
+WAGTAILADMIN_BASE_URL = "http://{{ cookiecutter.domain_name }}"{% endif %}

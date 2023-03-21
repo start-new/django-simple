@@ -30,6 +30,7 @@
   "postgresql_database": "postgres",
   "postgresql_user": "postgres",
   "postgresql_password": "postgres",
+  "use_wagtail": "n",
   "use_jupyter_notebooks": "n",
   "use_bootstrap": "n",
   "use_tailwindcss": "n"

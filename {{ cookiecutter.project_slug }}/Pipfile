@@ -14,13 +14,16 @@ crispy-bootstrap5 = "*"{% endif %}
 crispy-tailwind = "*"{% endif %}
 {%- if cookiecutter.use_bootstrap == "y" or cookiecutter.use_tailwindcss == "y" %}
 python-webpack-boilerplate = "*"{% endif %}
+{%- if cookiecutter.use_wagtail == "y" %}
+wagtail = "*"{% endif %}
 
 [dev-packages]
 pytest = "*"
 pytest-django = "*"
+django-debug-toolbar = "*"
 {%- if cookiecutter.postgresql_version != "other database" %}
 psycopg2-binary = "*"{% endif %}
-{%- if cookiecutter.use_jupyter_notebook == "y" %}
+{%- if cookiecutter.use_jupyter_notebooks == "y" %}
 notebook = "*"{% endif %}
 
 [production]
