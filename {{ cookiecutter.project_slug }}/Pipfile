@@ -14,8 +14,6 @@ crispy-bootstrap5 = "*"{% endif %}
 crispy-tailwind = "*"{% endif %}
 {%- if cookiecutter.use_bootstrap == "y" or cookiecutter.use_tailwindcss == "y" %}
 python-webpack-boilerplate = "*"{% endif %}
-{%- if cookiecutter.use_wagtail == "y" %}
-wagtail = "*"{% endif %}
 
 [dev-packages]
 pytest = "*"
