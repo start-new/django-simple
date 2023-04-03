@@ -16,7 +16,7 @@
     {% raw %}{% endblock head_styles %}{% endraw %} 
     {% raw %}{% block head_scripts %}{% endblock head_scripts %}{% endraw %}
   </head>
-  <body {% if cookiecutter.use_bootstrap == "y" %}class="{% raw %}{% block body_classes %}d-flex flex-column min-vh-100 justify-content-between{% endblock body_classes %}{% endraw %}"{% endif%}>
+  <body {%- if cookiecutter.use_bootstrap == "y" %} class="{% raw %}{% block body_classes %}d-flex flex-column min-vh-100 justify-content-between{% endblock body_classes %}{% endraw %}"{% endif%}>
     {%- if cookiecutter.use_bootstrap == "y" %}
     <div class="container">
       {% raw %}{% if messages %}
