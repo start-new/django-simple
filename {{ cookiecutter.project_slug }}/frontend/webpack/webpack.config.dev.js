@@ -25,6 +25,10 @@ module.exports = merge(common, {
     devMiddleware: {
       writeToDisk: true,
     },
+    watchFiles: [
+      Path.join(__dirname, '../../{{ cookiecutter.project_slug }}/**/*.py'),
+      Path.join(__dirname, '../../{{ cookiecutter.project_slug }}/**/*.html'),
+    ],
   },
   plugins: [
     new Webpack.DefinePlugin({
