@@ -1,0 +1,21 @@
+{%- if cookiecutter.use_bootstrap == "y" %}
+<div class="container">
+  {% raw %}{% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-dismissible {% if message.tags %}{{ message.tags }}{% endif %}">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+  {% endif %}{% endraw %}
+</div>{% else %}
+<div>
+  {% raw %}{% if messages %}
+    {% for message in messages %}
+    <div class="{% if message.tags %}{{ message.tags }}{% endif %}">
+      {{ message }}
+      <button type="button" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+  {% endif %}{% endraw %}
+</div>{% endif %}
