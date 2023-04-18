@@ -23,8 +23,8 @@
     {% endif -%}
     {% raw %}{% endblock head_scripts %}{% endraw %}
   </head>
-  <body class="{% raw %}{% block body_classes %}{% endblock body_classes %}{% endraw %}">
-    {% raw %}{% block messages %}{% include 'partials/messages.html' %}{% endblock messages %}{% endrow %}
+  <body class="{% raw %}{% block body_classes %}position-relative min-vh-100{% endblock body_classes %}{% endraw %}">
+    {% raw %}{% block messages %}{% include 'partials/messages.html' %}{% endblock messages %}{% endraw %}
     
     {% raw %}{% block navigation %}{% include 'partials/navigation.html' %}{% endblock navigation %}{% endraw %}
     
