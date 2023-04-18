@@ -8,41 +8,38 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <title>{% raw %}{% block title %}{% endblock title %}{% endraw %}</title>
+    
     {% raw %}{% block head_styles %}{% endraw %}
     {%- if cookiecutter.use_bootstrap == "y" or cookiecutter.use_tailwindcss == "y" %}
       {% raw %}{% stylesheet_pack 'app' %}{% endraw %}
     {% endif -%}
     {% raw %}{% endblock head_styles %}{% endraw %} 
-    {% raw %}{% block head_scripts %}{% endblock head_scripts %}{% endraw %}
+    
+    {% raw %}{% block head_scripts %}{% endraw %}
+    {%- if cookiecutter.use_bootstrap == "y" or cookiecutter.use_tailwindcss == "y" %}
+      {% raw %}{% javascript_pack 'app' attrs='defer' %}{% endraw %}
+    {% endif -%}
+    {% raw %}{% endblock head_scripts %}{% endraw %}{% endraw %}
   </head>
-  <body {%- if cookiecutter.use_bootstrap == "y" %} class="{% raw %}{% block body_classes %}d-flex flex-column min-vh-100 justify-content-between{% endblock body_classes %}{% endraw %}"{% endif%}>
-    {%- if cookiecutter.use_bootstrap == "y" %}
-    <div class="container">
-      {% raw %}{% if messages %}
-        {% for message in messages %}
-        <div class="alert alert-dismissible {% if message.tags %}{{ message.tags }}{% endif %}">
-          {{ message }}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        {% endfor %}
-      {% endif %}{% endraw %}
-    </div>{% endif %}
+  <body class="{% raw %}{% block body_classes %}{% endblock body_classes %}{% endraw %}">
+    {% raw %}{% block messages %}{% include 'partials/messages.html' %}{% endblock messages %}{% endrow %}
     
     {% raw %}{% block navigation %}{% include 'partials/navigation.html' %}{% endblock navigation %}{% endraw %}
-    {% raw %}{% block header %}{% endblock header %}{% endraw %}
+    
+    {% raw %}{% block header %}{# placer l'en-tête de la page ici #}{% endblock header %}{% endraw %}
+    
     {% raw %}{% block outer_content %}{% endraw %}
         <main{% if cookiecutter.use_bootstrap == "y" %} class="flex-grow-1 container"{% endif %}>
-          {% raw %}{% block content %}{% endblock content %}{% endraw %}
+          {% raw %}{% block content %}{# placer le contenu principal ici #}{% endblock content %}{% endraw %}
         </main>
     {% raw %}{% endblock outer_content %}{% endraw %}
+    
     {% raw %}{% block footer %}{% include 'partials/footer.html' %}{% endblock footer %}{% endraw %}
     
-    {% raw %}{% block modal %}{% endblock modal %}{% endraw %}
-    {% raw %}{% block bottom_scripts %}{% endraw %}
-    {%- if cookiecutter.use_bootstrap == "y" or cookiecutter.use_tailwindcss == "y" %}
-      {% raw %}{% javascript_pack 'app' attrs='charset="UTF-8"' %}{% endraw %}
-    {% endif -%}
-    {% raw %}{% endblock bottom_scripts %}{% endraw %}
+    {% raw %}{% block modal %}{# placer vos fenêtres modales ici #}{% endblock modal %}{% endraw %}
+    
+    {% raw %}{% block bottom_scripts %}{# placer vos scripts de bas de page ici #}{% endblock bottom_scripts %}{% endraw %}
   </body>
 </html>
