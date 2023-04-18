@@ -21,7 +21,7 @@
     {%- if cookiecutter.use_bootstrap == "y" or cookiecutter.use_tailwindcss == "y" %}
       {% raw %}{% javascript_pack 'app' attrs='defer' %}{% endraw %}
     {% endif -%}
-    {% raw %}{% endblock head_scripts %}{% endraw %}{% endraw %}
+    {% raw %}{% endblock head_scripts %}{% endraw %}
   </head>
   <body class="{% raw %}{% block body_classes %}{% endblock body_classes %}{% endraw %}">
     {% raw %}{% block messages %}{% include 'partials/messages.html' %}{% endblock messages %}{% endrow %}
