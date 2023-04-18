@@ -18,12 +18,12 @@
     "3.9"
   ],
   "postgresql_version": [
+    "other database",
     "latest",
     "15",
     "14",
     "13",
-    "12",
-    "other database"
+    "12"
   ],
   "postgresql_host": "localhost",
   "postgresql_port": "auto",
