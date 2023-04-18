@@ -18,19 +18,19 @@
     "3.9"
   ],
   "postgresql_version": [
-    "other database",
     "latest",
     "15",
     "14",
     "13",
-    "12"
+    "12",
+    "other database"
   ],
   "postgresql_host": "localhost",
   "postgresql_port": "auto",
   "postgresql_database": "postgres",
   "postgresql_user": "postgres",
   "postgresql_password": "postgres",
-  "use_jupyter_notebooks": "n",
-  "use_bootstrap": "n",
+  "use_jupyter_notebooks": "y",
+  "use_bootstrap": "y",
   "use_tailwindcss": "n"
 }
