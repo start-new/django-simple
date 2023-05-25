@@ -9,7 +9,7 @@ The following procedure can be followed to install a new project:
 - Create the project with `$ cookiecutter gh:start-new/django-simple`
 - Answers the questions
 - Enter the project with the terminal
-- Install project dependencies using pipenv: `$ pipenv install`
+- Install project dependencies using pipenv: `$ pipenv install --dev`
 - If postgresql is used and you want to use docker, start docker-compose with `$ docker-compose up -d`
 - Execute the migrations using `$ pipenv run python manage.py migrate`
 - If you have nodejs installed and you chose to use webpack:
