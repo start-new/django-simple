@@ -20,7 +20,7 @@ const contentPaths = [...projectPaths, ...pythonPaths];
 console.log(`tailwindcss will scan ${contentPaths}`);
 
 module.exports = {
-  content: contentPaths
+  content: contentPaths,
   theme: {
     extend: {},
   },
