@@ -12,7 +12,7 @@ services:
             POSTGRES_PASSWORD: {{ cookiecutter.postgresql_password }}
             POSTGRES_DB: {{ cookiecutter.postgresql_database }}
         volumes:
-            - "postgres_{{ cookiecutter.project_slug }}_{% if cookiecutter.postgresql_port == "auto" %}!!!SET POSTGRESQL_AUTO_PORT!!!{% else %}{{ cookiecutter.postgresql_port }}{% endif %}:/var/lib/postgresql"
+            - "postgres_{{ cookiecutter.project_slug }}_{% if cookiecutter.postgresql_port == "auto" %}!!!SET POSTGRESQL_AUTO_PORT!!!{% else %}{{ cookiecutter.postgresql_port }}{% endif %}:/var/lib/postgresql/data"
 
 volumes:
     postgres_{{ cookiecutter.project_slug }}_{% if cookiecutter.postgresql_port == "auto" %}!!!SET POSTGRESQL_AUTO_PORT!!!{% else %}{{ cookiecutter.postgresql_port }}{% endif %}:
