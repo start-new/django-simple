@@ -12,6 +12,10 @@
                 <li class="nav-item">
                 <a class="nav-link {% raw %}{% if request.path == url %}active{% endif %}{% endraw %}" {% raw %}{% if request.path == url %}aria-current="page"{% endif %}{% endraw %} href="{% raw %}{{ url }}{% endraw %}">Home{% raw %}{% if request.path == url %}{% endraw %} <span class="visually-hidden">(current)</span>{% raw %}{% endif %}{% endraw %}</a>
                 </li>
+                {% raw %}{% url 'admin:index' as url %}{% endraw %}
+                <li class="nav-item">
+                <a class="nav-link" href="{% raw %}{{ url }}{% endraw %}" target="_blank">Admin</a>
+                </li>
                 {% raw %}{% if not user.is_authenticated %}{% endraw %}
                 {% raw %}{% url 'users:login' as url %}{% endraw %}
                 <li class="nav-item">
